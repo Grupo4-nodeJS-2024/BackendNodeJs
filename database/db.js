@@ -1,10 +1,10 @@
 const mysql = require ('mysql');
 
 const conexion = mysql.createConnection({
-    host: 'mysql-ospostog4js.alwaysdata.net',
-    user: '363226_neria',
-    password:'BfwW5.F4~*m6F*p',
-    database:'ospostog4js_orlando',
+    host: '',
+    user: '',
+    password:'',
+    database:'',
 })
 conexion.connect((error)=>{
     if(error){
