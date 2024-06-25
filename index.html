@@ -11,9 +11,10 @@
 <body>
     <header class="container">
         <nav>
+            <!--MENU TOGGLE/hamburger-lines-->
             <div class="navbar">
               <div class="container nav-container">
-                <input class="checkbox" type="checkbox" name="" id="menu" />
+                <input type="checkbox" class="checkbox" name="" id="menu" aria-label="menu"/>
                   <div class="hamburger-lines">
                     <span class="line line1"></span>
                     <span class="line line2"></span>
@@ -22,7 +23,7 @@
                 <div class="logo"><img src="imgs/logo.png" alt="Grupo4" height="80px" >
                 </div>
             
-<!--MENU TOGGLE/hamburger-lines-->
+<!--MENU TOGGLE/OPCIONES-->
                 <div class="menu-items">
                     <ul>
                   <li><a href="#">Productos</a></li>
@@ -39,14 +40,16 @@
     <div class="containerPanel">
         <h1>Panel de Control</h1>
         <div class="buttons">
-          <button class="btn"><i class="bx bxs-user-circle bx-sm" type='solid'></i><br>Usuarios</button>
-          <button class="btn"><i class='bx bxl-product-hunt bx-sm'></i><br>Productos</button>
-          <button class="btn"><i class='bx bx-minus-front bx-sm' ></i><br>FrontEnd</button>
-          <button class="btn"><i class='bx bxs-info-circle bx-sm' ></i><br>Informes</button>
+          <button class="btn" name="usuarios"><i class="bx bxs-user-circle bx-sm" type='solid'></i><br>Usuarios</button>
+          <button class="btn" name="products"><i class='bx bxl-product-hunt bx-sm'></i><br>Productos</button>
+          <button class="btn" name="frontEnd"><i class='bx bx-minus-front bx-sm' ></i><br>FrontEnd</button>
+          <button class="btn" name="informes"><i class='bx bxs-info-circle bx-sm' ></i><br>Informes</button>
         </div></main>
  
+
     <!---Zona Script--->
-    <script src="js/script.js"></script>
+    
+    <script src="script.js"></script>
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>    
 </body>
 </html>
