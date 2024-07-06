@@ -12,7 +12,7 @@ buttons.forEach(button => {
             window.location.href='productos';
             break;
         case 'fronEnd':
-           window.location.href='https://ospostog4js.alwaysdata.net/';
+           window.location.href='https://grupo4-nodejs-2024.github.io/Grupo4-NodeJs/index.html';
             break;
         case 'informes':
             window.location.href='info';
