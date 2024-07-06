@@ -9,7 +9,7 @@ buttons.forEach(button => {
             window.location.href='user';
             break;
         case 'productos':
-            window.location.href='products';
+            window.location.href='productos';
             break;
         case 'fronEnd':
            window.location.href='https://ospostog4js.alwaysdata.net/';
