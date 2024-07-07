@@ -41,14 +41,21 @@
         <h1>Panel de Control</h1>
         <div class="buttons">
           <button class="btn" name="usuarios"><i class="bx bxs-user-circle bx-sm" type='solid'></i><br>Usuarios</button>
-          <button class="btn" name="productos"><i class='bx bxl-product-hunt bx-sm'></i><br>Productos</button>
-          <button class="btn" name="frontEnd"><i class='bx bx-minus-front bx-sm' ></i><br>FrontEnd</button>
+          <button class="btn" name="productos" onclick="cargar('views/productos.ejs')"><i class='bx bxl-product-hunt bx-sm'></i><br>Productos</button>
+          <button class="btn" name="frontEnd" onclick="cargar('https://ospostog4js.alwaysdata.net/index.htmlviews/productos.ejs')"><i class='bx bx-minus-front bx-sm' ></i><br>FrontEnd</button>
           <button class="btn" name="informes"><i class='bx bxs-info-circle bx-sm' ></i><br>Informes</button>
         </div></main>
  
+       <div class="container"><section class="content">
+            <!-- Con JavaScript loadpage -->
+        </section></div> 
+
     <!---Zona Script--->
-    
-    <script src="script.js"></script>
+    <script>
+      function cargar(url) {
+        window.location.href = url;
+      }
+    </script>
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>    
 </body>
 </html>
