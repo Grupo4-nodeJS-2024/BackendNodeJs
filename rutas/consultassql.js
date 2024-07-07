@@ -73,3 +73,13 @@ routerSql.get("/", (req, res) => {
 })*/
 
 module.exports = routerSql;
+// login.js
+/*
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+
+
+*/
