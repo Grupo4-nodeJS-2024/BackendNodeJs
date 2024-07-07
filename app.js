@@ -1,10 +1,23 @@
+require('dotenv').config();
 const express = require('express');
+const path = require('path');
+const bases = require('./rutas/consultassql');
+var cors = require('cors');
+
 const app = express();
+const PORT = process.env.PORT || 3000;
 
-app.set('view engine', 'ejs');
+// Middleware to serve static files
+app.use(cors());
+app.use(express.static(path.join(__dirname, '/www')));
+app.use(express.json());
+app.use('/rutas', bases);
 
-app.use('/', require('./router'));
+// Route to serve the index.html
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '/www', '/index.html'));
+});
 
-app.listen(3000, ()=> {
-    console.log('SERVER funcionando en http://localhost:3000');
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
 });

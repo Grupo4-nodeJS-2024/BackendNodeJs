@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        /*//const fetch = require('node-fetch');
+        let url = 'https://localhost:3000/rutas';
+        let options = {method: 'GET'};*/
+
+        url="http://ospostog4js.alwaysdata.net/rutas";
+        //let url = 'localhost:3000/rutas/';
+        /*let url = 'http://localhost:3000/rutas/';*/
+        fetch(url)
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error =>console.log(error));
+
+
+       /* fetch("https://pokeapi.co/api/v2/pokemon/ditto/")
+            .then ((res) => res.json())
+            .then((data) =>console.log(data));*/
+
+
+
+    </script>
+</body>
+</html>
