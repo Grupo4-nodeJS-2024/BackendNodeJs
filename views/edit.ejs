@@ -1,1 +1,36 @@
-<h1>EDITAR</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/stylesCRUD.css"/>
+  <title><%= action === 'edit' ? 'Editar Producto' : 'Añadir Producto' %></title>
+</head>
+<body>
+  <div class="container">
+    <h1><%= action === 'edit' ? 'Editar Producto' : 'Añadir Producto' %></h1>
+    <form action="<%= action === 'edit' ? '/productos/editar/' + producto.id : '/productos' %>" method="POST">
+      <label for="nombreProducto">Nombre del Producto</label>
+      <input type="text" id="nombreProducto" name="nombreProducto" value="<%= producto ? producto.nombreProducto : '' %>" required>
+
+      <label for="descripcion">Descripción</label>
+      <textarea id="descripcion" name="descripcion" required><%= producto ? producto.descripcion : '' %></textarea>
+
+      <label for="grupo">Grupo</label>
+      <select id="grupo" name="grupo" required>
+        <option value="hombre" <%= producto && producto.grupo === 'hombre' ? 'selected' : '' %>>Hombre</option>
+        <option value="mujer" <%= producto && producto.grupo === 'mujer' ? 'selected' : '' %>>Mujer</option>
+        <option value="jovenes" <%= producto && producto.grupo === 'jovenes' ? 'selected' : '' %>>Jóvenes</option>
+      </select>
+
+      <label for="precio">Precio</label>
+      <input type="number" id="precio" name="precio" value="<%= producto ? producto.precio : '' %>" required>
+
+      <label for="imagen">Imagen</label>
+      <input type="text" id="imagen" name="imagen" value="<%= producto ? producto.imagen : '' %>" required>
+
+      <button type="submit"><%= action === 'edit' ? 'Actualizar' : 'Añadir' %></button>
+    </form>
+  </div>
+</body>
+</html>
