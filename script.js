@@ -6,13 +6,13 @@ buttons.forEach(button => {
     const page = button.textContent.toLowerCase(); // Convierte el texto del botón a minúsculas
     switch (page) {
         case 'usuarios':
-            window.location.href='user';
+            window.location.href='';
             break;
         case 'productos':
-            window.location.href='productos';
+            window.location.href='views/productos.ejs';
             break;
         case 'fronEnd':
-           window.location.href='https://grupo4-nodejs-2024.github.io/Grupo4-NodeJs/index.html';
+           window.location.href='https://ospostog4js.alwaysdata.net/';
             break;
         case 'informes':
             window.location.href='info';
