@@ -1,4 +1,4 @@
-//const {matematicas} = require('../datos/cursos').infoCursos;
+
 
 const express = require("express");
 //const fs = require('node: fs');
@@ -58,27 +58,29 @@ routerSql.get("/", (req, res) => {
 routerSql.post("/productos", (req, res) => {   //ingreso de nuevo producto
   console.log(req.body);
   const fecha= new Date();
-  const valor = [req.body.nombreProducto, req.body.descripcion, req.body.grupo, req.body.precio, req.body.file, fecha];
+  const valor = [req.body.nombreProducto, req.body.descripcion, req.body.grupo, req.body.precio, req.body.archivosub, fecha];
   console.log(valor);
   console.log(req.body.file);
+  res.json(req.body);
 
-  const storage = multer.diskStorage({
+  /*const storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, './www/assets/images')
     },
     filename: function (req, file, cb) {
       cb(null, file.originalname)
     }
-  });
+  });*/
 
-  const upload = multer({ storage: storage })
+  //const upload = multer({ storage: storage })
 
-  sql = "INSERT INTO productos (nombreProducto, descripcion, grupo, precio, imagen, fecha_creacion ) VALUES (?, ?, ?, ?, ?, ?)"
+  //sql = "INSERT INTO productos (nombreProducto, descripcion, grupo, precio, imagen, fecha_creacion ) VALUES (?, ?, ?, ?, ?, ?)"
 
-  db.query(sql, valor, (err, resultado) => {   //Consulta SQL para presentación en Front End.
+  /*db.query(sql, valor, (err, resultado) => {   //Consulta SQL para presentación en Front End.
     if (err) throw err
     res.json(resultado);
- });
+ });*/
+ 
 })
 
 
@@ -98,13 +100,3 @@ routerSql.post("/productos", (req, res) => {   //ingreso de nuevo producto
 })*/
 
 module.exports = routerSql;
-// login.js
-/*
-CREATE TABLE usuarios (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50) NOT NULL,
-    password VARCHAR(255) NOT NULL
-);
-
-
-*/
