@@ -15,7 +15,7 @@ buttons.forEach(button => {
            window.location.href='https://ospostog4js.alwaysdata.net/';
             break;
         case 'informes':
-            window.location.href='info';
+            window.location.href='';
             break;
 
         default:
