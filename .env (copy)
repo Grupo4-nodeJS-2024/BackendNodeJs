@@ -1,0 +1,11 @@
+L_HOSTNAME = 127.0.0.1
+L_USER = root
+L_PASSWORD = jkl45678
+L_DATABASE = javascript
+L_PORT = 3306
+
+G4_HOSTNAME = mysql-ospostog4js.alwaysdata.net
+G4_USER = 363226_orlando
+G4_PASSWORD = JNg7HzE2Js)])i}
+G4_DATABASE = ospostog4js_orlando
+G4_PORT = 3306

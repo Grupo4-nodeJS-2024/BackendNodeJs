@@ -1,9 +1,9 @@
 //const {matematicas} = require('../datos/cursos').infoCursos;
 
 const express = require("express");
-/*const fs = require('node: fs');*/
-//const multer  = require("multer")
-//const upload = multer({ dest: 'uploads/' })
+//const fs = require('node: fs');
+
+const multer  = require("multer")
 
 const routerSql = express.Router();
 
@@ -42,11 +42,36 @@ routerSql.get("/", (req, res) => {
 
 });
 
-/*routerSql.post("/productos", (req, res) => {   //ingreso de nuevo producto
+/*********************************************************************************************************************************************************************
+* Sistema de carga de producto:
+* En este caso, una de las líneas que debe tener el formulario de carga de producto es la siguiente:
+*           <form action="/profile" method="post" enctype="multipart/form-data">
+*                  <input type="file" name="nombre_de_campo" />        <-------- Esta es la línea en cuestión, un campo donde seleccionar el archivo. Limitar a .jpg
+*           </form>
+* Esto da como resultado un objeto file, con todos los datos del archivo seleccionado
+* Es muy importante que esto esté definido con claridad en el formulario, pues es la base de la administración 
+* del almacenamiento del mismo.
+**********************************************************************************************************************************************************************/
+
+
+
+routerSql.post("/productos", (req, res) => {   //ingreso de nuevo producto
   console.log(req.body);
   const fecha= new Date();
-  const valor = [req.body.nombreProducto, req.body.descripcion, req.body.grupo, req.body.precio, req.body.imagen, fecha];
+  const valor = [req.body.nombreProducto, req.body.descripcion, req.body.grupo, req.body.precio, req.body.file, fecha];
   console.log(valor);
+  console.log(req.body.file);
+
+  const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, './www/assets/images')
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.originalname)
+    }
+  });
+
+  const upload = multer({ storage: storage })
 
   sql = "INSERT INTO productos (nombreProducto, descripcion, grupo, precio, imagen, fecha_creacion ) VALUES (?, ?, ?, ?, ?, ?)"
 
@@ -54,7 +79,7 @@ routerSql.get("/", (req, res) => {
     if (err) throw err
     res.json(resultado);
  });
-})*/
+})
 
 
 
