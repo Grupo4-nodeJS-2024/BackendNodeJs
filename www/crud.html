@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD - Productos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CRUD - Productos</h1>
+        <a href="alta.html" class="btn btn-primary mb-3">Agregar Producto</a>
+        <a href="index.html" class="btn btn-danger mb-3">Cerrar Sesión</a>
+
+        <div class="row mb-3">
+            <div class="col">
+                <h2>Lista de Productos</h2>
+                <ul class="list-group" id="productList">
+                    <!-- Aquí se listarán los productos -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS y dependencias -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const productList = document.getElementById('productList');
+
+            // Función para cargar y mostrar productos
+            function fetchAndDisplayProducts() {
+                fetch('https://ospostog4js.alwaysdata.net/rutas')
+                    .then(response => response.json())
+                    .then(data => {
+                        displayProducts(data);
+                    })
+                    .catch(error => console.error('Error al cargar productos:', error));
+            }
+
+            // Función para mostrar productos en la lista
+            function displayProducts(products) {
+                productList.innerHTML = ''; // Limpiar lista de productos
+
+                products.forEach(product => {
+                    const li = document.createElement('li');
+                    li.classList.add('list-group-item');
+                    li.innerHTML = `
+                        <div>
+                            <strong>${product.nombreProducto}</strong>
+                            <span class="float-right">
+                                <button class="btn btn-sm btn-primary mr-2" onclick="editProduct(${product.idProducto})">Editar</button>
+                                <button class="btn btn-sm btn-danger" onclick="deleteProduct(${product.idProducto})">Eliminar</button>
+                            </span>
+                        </div>
+                        <div>${product.descripcion}</div>
+                        <div>Precio: $${product.precio}</div>
+                    `;
+                    productList.appendChild(li);
+                });
+            }
+
+            // Llamar a la función para cargar productos al cargar la página
+            fetchAndDisplayProducts();
+
+            // Función para eliminar un producto
+            function deleteProduct(productId) {
+                if (confirm('¿Estás seguro de eliminar este producto?')) {
+                    fetch(`https://ospostog4js.alwaysdata.net/rutas/${productId}`, {
+                        method: 'DELETE'
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        alert(data.message); // Mensaje de éxito o error
+                        fetchAndDisplayProducts(); // Actualizar lista de productos
+                    })
+                    .catch(error => console.error('Error al eliminar producto:', error));
+                }
+            }
+
+            // Función para editar un producto (ejemplo básico)
+            function editProduct(productId) {
+                // Redirigir a la página de edición, utilizando alta.html como ejemplo
+                window.location.href = `editar.html?id=${productId}`;
+            }
+        });
+    </script>
+</body>
+</html>
+

@@ -16,10 +16,10 @@ function obtenerCategoriaDesdePagina() {
 }
 
 // Función para cargar y mostrar productos según la categoría
-function fetchAndDisplayProducts() {
+function fetchAndDisplayProducts(order) {
     const categoria = obtenerCategoriaDesdePagina();
     if (categoria !== null) {
-        const apiUrl = categoria ? `https://ospostog4js.alwaysdata.net/rutas?grupo=${categoria}&orden=d` : 'https://ospostog4js.alwaysdata.net/rutas';
+        const apiUrl = categoria ? `https://ospostog4js.alwaysdata.net/rutas?grupo=${categoria}&orden=${order}` : `https://ospostog4js.alwaysdata.net/rutas?orden=${order}`;
         fetch(apiUrl)
             .then(response => response.json())
             .then(data => {
@@ -51,8 +51,24 @@ function displayProducts(products) {
     });
 }
 
+document.getElementById('btn_asc').addEventListener('click', function() {
+    fetchAndDisplayProducts('a');
+    this.classList.add('selected');
+    this.classList.remove('unselected');
+    document.getElementById('btn_desc').classList.add('unselected');
+    document.getElementById('btn_desc').classList.remove('selected');
+});
+
+document.getElementById('btn_desc').addEventListener('click', function() {
+    fetchAndDisplayProducts('d');
+    this.classList.add('selected');
+    this.classList.remove('unselected');
+    document.getElementById('btn_asc').classList.add('unselected');
+    document.getElementById('btn_asc').classList.remove('selected');
+});
+
 // Llamar a la función fetchAndDisplayProducts cuando se carga la página
-window.addEventListener('load', fetchAndDisplayProducts);
+window.addEventListener('load', fetchAndDisplayProducts('d'));
 
 // Banner, menú móvil y otras funciones adicionales
 document.addEventListener("DOMContentLoaded", () => {

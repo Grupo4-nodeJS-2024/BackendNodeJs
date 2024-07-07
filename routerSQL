@@ -1,0 +1,67 @@
+routerSql.get("/", (req, res) => {
+  const grupo = req.query.grupo;
+  const orden = req.query.orden;
+
+  let sql = "SELECT * FROM productos";
+  const valor = [];
+
+  if (grupo != undefined) {
+    sql = sql + ` WHERE grupo = ?`;
+    valor.push(grupo);
+  }
+
+  if (orden != undefined) {
+    sql = sql + " ORDER BY precio ";
+    if (orden != "a") {
+      sql = sql + "DESC";
+    }
+  }
+
+  db.query(sql, valor, (err, resultado) => {
+    if (err) throw err;
+    res.render('list', { productos: resultado });
+  });
+});
+
+// Para mostrar productos
+routerSql.get("/nuevo", (req, res) => {
+  res.render('form', { action: 'add', producto: null });
+});
+
+
+//Para añadir productos
+routerSql.post("/", (req, res) => {
+  const { nombreProducto, descripcion, grupo, precio, imagen } = req.body;
+  const fecha = new Date();
+  const valor = [nombreProducto, descripcion, grupo, precio, imagen, fecha];
+
+  const sql = "INSERT INTO productos (nombreProducto, descripcion, grupo, precio, imagen, fecha_creacion) VALUES (?, ?, ?, ?, ?, ?)";
+
+  db.query(sql, valor, (err, resultado) => {
+    if (err) throw err;
+    res.redirect('/productos');
+  });
+});
+
+
+//Para edicion de productos
+routerSql.get("/editar/:id", (req, res) => {
+  const { id } = req.params;
+  const sql = "SELECT * FROM productos WHERE id = ?";
+
+  db.query(sql, [id], (err, resultado) => {
+    if (err) throw err;
+    res.render('form', { action: 'edit', producto: resultado[0] });
+  });
+});
+
+//Para actualizar productos
+routerSql.post("/editar/:id", (req, res) => {
+  const { id } = req.params;
+  const { nombreProducto, descripcion, grupo, precio, imagen } = req.body;
+  const fecha = new Date();
+  const valor = [nombreProducto, descripcion, grupo, precio, imagen, fecha, id];
+
+  const sql = "UPDATE productos SET nombreProducto = ?, descripcion = ?, grupo = ?, precio = ?, imagen = ?";
+
+});

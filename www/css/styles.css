@@ -455,3 +455,10 @@ footer {
   }
 }
 }
+.selected {
+  background-color: #d0021b; /* Cambia este color al que prefieras */
+}
+
+.unselected {
+  background-color: #c0c0c0; /* Cambia este color al que prefieras */
+}
