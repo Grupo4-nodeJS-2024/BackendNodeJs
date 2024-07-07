@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preguntas Frecuentes - GRUPO4</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"/>
+    <link rel="stylesheet" href="css/styles.css"> 
+    <style>
+        .faq-container {
+            margin-top: 20px;
+        }
+        .faq-item {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+        .faq-question {
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .faq-answer {
+            display: none;
+            margin-top: 10px;
+        }
+        .faq-answer.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<header class="container">
+        <nav><div>
+           <div class="sitewide">
+            <div class="siteicon">
+              <a href="#"><i class="fa fa-user fa-lg" aria-hidden="true" "></i></a>
+              <a href="#"><i class="fa fa-shopping-bag fa-lg" aria-hidden="true" "></i></a>
+            </div>
+            <span class="animate__heartBeat">Descuento del 50% en el envío de compras superiores a $100</span>
+          </div>
+          <div class="container form1">
+            <form id="form1" class="form form1" action="/search" method="GET">
+              <input type="text" id="search" name="q" placeholder="Buscar...">
+              <button type="submit">Buscar</button>
+          </form></div>
+            <div class="navbar">
+              <a href="index.html"><img src="imgs/logo.png" alt="Grupo4" height="80px" ></a>
+              <a href="women.html">Mujeres</a>
+              <a href="men.html">Hombres</a>
+              <a href="#">Juvenil</a>
+              <a href="#">Sustentable</a>
+              <a  href="#section1" onclick="scrollToSection(event, 'section1')">Contacto</a>
+              <a href="faq.html">Preguntas Frecuentes</a>
+         </div>
+        </div></nav>
+        <div>
+    </header>
+    
+    <main class="container">
+        <h2>Preguntas Frecuentes</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <i class="fa fa-chevron-right"></i> ¿Cuál es el tiempo de entrega de los pedidos?
+                </div>
+                <div class="faq-answer">
+                    El tiempo de entrega de los pedidos es de 3 a 5 días hábiles.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <i class="fa fa-chevron-right"></i> ¿Cuál es la política de devoluciones?
+                </div>
+                <div class="faq-answer">
+                    Nuestra política de devoluciones permite a los clientes devolver los productos dentro de los 30 días posteriores a la compra.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <i class="fa fa-chevron-right"></i> ¿Cómo puedo rastrear mi pedido?
+                </div>
+                <div class="faq-answer">
+                    Puedes rastrear tu pedido utilizando el número de seguimiento proporcionado en el correo de confirmación del envío.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <i class="fa fa-chevron-right"></i> ¿Ofrecen envíos internacionales?
+                </div>
+                <div class="faq-answer">
+                    Sí, ofrecemos envíos internacionales a varios países. Los tiempos de entrega y costos pueden variar.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <i class="fa fa-chevron-right"></i> ¿Qué métodos de pago aceptan?
+                </div>
+                <div class="faq-answer">
+                    Aceptamos varios métodos de pago, incluyendo tarjetas de crédito, PayPal y transferencias bancarias.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <i class="fa fa-chevron-right"></i> ¿Cómo puedo contactar con atención al cliente?
+                </div>
+                <div class="faq-answer">
+                    Puedes contactar con atención al cliente a través de nuestro formulario de contacto en la página web o llamando al número de atención al cliente.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <i class="fa fa-chevron-right"></i> ¿Puedo modificar mi pedido después de realizar la compra?
+                </div>
+                <div class="faq-answer">
+                    Sí, puedes modificar tu pedido dentro de las primeras 24 horas después de realizar la compra. Contacta a atención al cliente para asistencia.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <i class="fa fa-chevron-right"></i> ¿Tienen tiendas físicas?
+                </div>
+                <div class="faq-answer">
+                    Sí, contamos con varias tiendas físicas en diferentes ciudades. Consulta nuestra página de tiendas para encontrar la más cercana.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <i class="fa fa-chevron-right"></i> ¿Cómo puedo saber mi talla?
+                </div>
+                <div class="faq-answer">
+                    Ofrecemos una guía de tallas detallada en cada página de producto. También puedes contactar con atención al cliente para obtener ayuda.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <i class="fa fa-chevron-right"></i> ¿Puedo cancelar mi pedido?
+                </div>
+                <div class="faq-answer">
+                    Sí, puedes cancelar tu pedido dentro de las primeras 24 horas después de realizar la compra. Contacta a atención al cliente para asistencia.
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="redes-sociales">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script>
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', event => {
+                const answer = event.currentTarget.nextElementSibling;
+                const icon = event.currentTarget.querySelector('.fa');
+                answer.classList.toggle('show');
+                icon.classList.toggle('fa-chevron-right');
+                icon.classList.toggle('fa-chevron-down');
+            });
+        });
+    </script>
+</body>
+</html>
