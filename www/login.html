@@ -17,7 +17,7 @@
                     <h3 class="text-center">Login</h3>
                 </div>
                 <div class="card-body">
-                    <form id="loginForm">
+                    <form id="loginForm" method="post">
                         <div class="form-group">
                             <label for="username">Username</label>
                             <input type="text" class="form-control" id="username" name="username" required>
@@ -37,7 +37,41 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="login.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const loginForm = document.getElementById('loginForm'); // Selecciona el formulario por su ID
+
+    // Verificar si se encontró el formulario
+    if (loginForm) {
+        // Escuchar el evento de submit del formulario de login
+        loginForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevenir el envío por defecto del formulario
+
+            // Obtener valores de usuario y contraseña
+            const username = document.getElementById('username').value.trim(); // Obtener valor del input de username
+            const password = document.getElementById('password').value.trim(); // Obtener valor del input de password
+
+            // Validar que se ingresen datos
+            if (username === '' || password === '') {
+                alert('Por favor ingrese usuario y contraseña.');
+                return;
+            }
+
+            // Simular verificación de usuario y contraseña (cambiar por autenticación real)
+            // Ejemplo de verificación simulada
+            if (username === 'admin' && password === '1234') {
+                alert('Login exitoso'); // Login exitoso
+                // Redirigir a la página de inicio o realizar acciones necesarias
+                window.location.href = 'crud.html'; // Redirige a la página de CRUD
+            } else {
+                alert('Usuario o contraseña incorrectos'); // Mostrar mensaje de error
+            }
+        });
+    } else {
+        console.error('No se encontró el formulario de login.');
+    }
+});
+</script>
 
 </body>
 </html>
