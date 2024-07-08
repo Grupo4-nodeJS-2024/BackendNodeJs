@@ -66,10 +66,12 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-routerSql.post('/productos', upload.single("subida"), (req, res) => {   
+routerSql.post('/productos', upload.single("subida"), (req, res) => {  
+
+  console.log('posicion 1', req);
   
   const fecha= new Date();
-  const valor = [req.body.nombreProducto, req.body.descripcion, req.body.grupo, req.body.precio, req.body.subida, fecha];
+  const valor = [req.body.nombreProducto, req.body.descripcion, req.body.grupo, req.body.precio, req.file.originalname, fecha];
 
   sql = "INSERT INTO productos (nombreProducto, descripcion, grupo, precio, imagen, fecha_creacion ) VALUES (?, ?, ?, ?, ?, ?)"
   db.query(sql, valor, (err, resultado) => {   //Consulta SQL para presentación en Front End.
@@ -80,13 +82,18 @@ routerSql.post('/productos', upload.single("subida"), (req, res) => {
 
 
 
-/*routerSql.put("/productos", (req, res) => {   //Modificación de datos de producto
+/*routerSql.put("/modificar", (req, res) => {   //Modificación de datos de producto
   console.log(req.body);
   const fecha= new Date();
   const valor = [req.body.nombreProducto, req.body.descripcion, req.body.grupo, req.body.precio, req.body.imagen, fecha];
   console.log(valor);
 
-  sql = "INSERT INTO productos (nombreProducto, descripcion, grupo, precio, imagen, fecha_creacion ) VALUES (?, ?, ?, ?, ?, ?)"
+  sql = "UPDATE productos (nombreProducto, descripcion, grupo, precio, fecha_creacion ) VALUES (?, ?, ?, ?, ?, ?)"
+
+  "UPDATE productos SET (nombreProducto, descripcion, grupo, precio) VALUES (?, ?, ?, ?, ?)WHERE id=? ";
+
+
+VALUES(19, 'camisas', 'Camisas formales para oficina', 'hombre', 9600.00, 'camisa_hombre_2.jpg', '2023-09-10 10:05:40');
 
   db.query(sql, valor, (err, resultado) => {   //Consulta SQL para presentación en Front End.
     if (err) throw err
