@@ -3,7 +3,7 @@
 const express = require("express");
 //const fs = require('node: fs');
 
-const multer  = require("multer")
+//const multer  = require("multer")
 
 const routerSql = express.Router();
 
@@ -55,13 +55,23 @@ routerSql.get("/", (req, res) => {
 
 
 
-routerSql.post("/productos", (req, res) => {   //ingreso de nuevo producto
-  console.log(req.body);
+routerSql.post('/productos', (req, res) => {   
+  console.log(`Método: ${req.method}, Ruta: ${req.url}`);
+  console.log('Headers:', req.headers);
+  console.log('Cuerpo de la solicitud:', req.body);
+
+  console.log("estamos adentro");
+  
   const fecha= new Date();
-  const valor = [req.body.nombreProducto, req.body.descripcion, req.body.grupo, req.body.precio, req.body.archivosub, fecha];
+  //req.body.archivosub,
+  const valor = [req.body.nombreProducto, req.body.descripcion, req.body.grupo, req.body.precio, fecha];
   console.log(valor);
   console.log(req.body.file);
-  res.json(req.body);
+  
+  res.json({
+    message: 'Datos recibidos',
+    data: req.body
+  });
 
   /*const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -81,7 +91,7 @@ routerSql.post("/productos", (req, res) => {   //ingreso de nuevo producto
     res.json(resultado);
  });*/
  
-})
+});
 
 
 
