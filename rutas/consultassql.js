@@ -2,12 +2,12 @@
 
 const express = require("express");
 //const fs = require('node: fs');
-
-//const multer  = require("multer")
-
+const path = require('path');
+const multer  = require("multer");
 const routerSql = express.Router();
-
 const db = require("../databases/db");
+
+
 
 routerSql.get("/", (req, res) => {
   const grupo = req.query.grupo; //valores válidos: grupo=[hombre, mujer, jovenes]
@@ -52,45 +52,30 @@ routerSql.get("/", (req, res) => {
 * Es muy importante que esto esté definido con claridad en el formulario, pues es la base de la administración 
 * del almacenamiento del mismo.
 **********************************************************************************************************************************************************************/
+const uploadDir = './www/assets/images';
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, uploadDir)
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname
+    );
+    console.log('posicion 0 ' + file.originalname);
+  }
+});
 
+const upload = multer({ storage: storage });
 
-
-routerSql.post('/productos', (req, res) => {   
-  console.log(`Método: ${req.method}, Ruta: ${req.url}`);
-  console.log('Headers:', req.headers);
-  console.log('Cuerpo de la solicitud:', req.body);
-
-  console.log("estamos adentro");
+routerSql.post('/productos', upload.single("subida"), (req, res) => {   
   
   const fecha= new Date();
-  //req.body.archivosub,
-  const valor = [req.body.nombreProducto, req.body.descripcion, req.body.grupo, req.body.precio, fecha];
-  console.log(valor);
-  console.log(req.body.file);
-  
-  res.json({
-    message: 'Datos recibidos',
-    data: req.body
-  });
+  const valor = [req.body.nombreProducto, req.body.descripcion, req.body.grupo, req.body.precio, req.body.subida, fecha];
 
-  /*const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, './www/assets/images')
-    },
-    filename: function (req, file, cb) {
-      cb(null, file.originalname)
-    }
-  });*/
-
-  //const upload = multer({ storage: storage })
-
-  //sql = "INSERT INTO productos (nombreProducto, descripcion, grupo, precio, imagen, fecha_creacion ) VALUES (?, ?, ?, ?, ?, ?)"
-
-  /*db.query(sql, valor, (err, resultado) => {   //Consulta SQL para presentación en Front End.
+  sql = "INSERT INTO productos (nombreProducto, descripcion, grupo, precio, imagen, fecha_creacion ) VALUES (?, ?, ?, ?, ?, ?)"
+  db.query(sql, valor, (err, resultado) => {   //Consulta SQL para presentación en Front End.
     if (err) throw err
-    res.json(resultado);
- });*/
- 
+    res.send("Registro correctamente agregado");
+ });
 });
 
 
