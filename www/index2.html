@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="http://localhost:3000/rutas/productos" enctype="multipart/form-data" method="post">
+      <label for="nombreProducto">Ingrese nombre del producto: </label>
+      <input id="p_name" type="text" name="nombreProducto" />
+      <br /><br />
+
+      <label for="descripcion">Ingrese la descripción del producto: </label>
+      <input id="p_desc" type="text" name="descripcion" />
+      <br /><br />
+
+      <label for="grupo">Ingrese el grupo: </label>
+      <select id="g_name" name="grupo">
+        <option value="mujer">Mujer</option>
+        <option value="hombre">Hombre</option>
+        <option value="jovenes">Jovenes</option>
+      </select>
+      <br /><br />
+
+      <label for="precio">Ingrese el precio: </label>
+      <input id="p_precio" type="number" name="precio" /><br /><br />
+
+      <label for="archivo">Seleccione un archivo:</label>
+      <input id="archivo" type="file" name="subida" /><br /><br />
+
+      <input type="submit" value="OK" />
+    </form>
+  </body>
+</html>
