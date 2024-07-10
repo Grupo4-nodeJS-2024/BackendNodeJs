@@ -65,14 +65,14 @@ const storage = multer.diskStorage({
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
-    console.log("posicion 0 " + file.originalname);
+    //console.log("posicion 0 " + file.originalname);
   },
 });
 
 const upload = multer({ storage: storage });
 
 routerSql.post("/productos", upload.single("subida"), (req, res) => {
-  console.log("posicion 1", req);
+  //console.log("posicion 1", req);
 
   const fecha = new Date();
   const valor = [
