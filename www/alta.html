@@ -17,18 +17,26 @@
                     <h3 class="text-center">Agregar Producto</h3>
                 </div>
                 <div class="card-body">
-                    <form id="addProductForm" method="post" action="guardar_producto.php">
+                    <form id="addProductForm" method="post" action="http://localhost:3000/rutas/productos">
                         <div class="form-group">
                             <label for="nombre">Nombre del Producto</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre" required>
+                            <input type="text" class="form-control" id="nombre" name="nombreProducto" required>
                         </div>
                         <div class="form-group">
                             <label for="descripcion">Descripción</label>
                             <textarea class="form-control" id="descripcion" name="descripcion" rows="3" required></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="precio">Precio</label>
+                            <label for="precio">Grupo</label>
+                            <input type="number" class="form-control" id="grupo" name="grupo"  required>
+                        </div>
+                        <div class="form-group">
+                            <label for="precio">Grupo</label>
                             <input type="number" class="form-control" id="precio" name="precio" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="precio">Archivo de Imagen</label>
+                            <input type="file" class="form-control" id="file" name="subida" required>
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">Guardar Producto</button>
                     </form>
