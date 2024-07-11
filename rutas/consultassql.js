@@ -104,11 +104,11 @@ routerSql.put("/modificar", (req, res) => {
   valor.push(fecha, req.query.id);
 
   if (atrib == "") {
-    res.destroy("Sin datos para cambiar");
+    res.end("Sin datos para cambiar");
+    return;
   }
   var sql = "UPDATE productos SET ";
   atrib.forEach(miFuncion);
-
   function miFuncion(value, index, array) {
     sql += value + " = ?, ";
   }
@@ -118,7 +118,7 @@ routerSql.put("/modificar", (req, res) => {
   db.query(sql, valor, (err, resultado) => {
     //Consulta SQL para presentación en Front End.
     if (err) throw err;
-    //res.json(resultado);
+    
   });
   res.send("todo ok");
 });
