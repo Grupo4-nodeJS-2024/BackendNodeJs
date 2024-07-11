@@ -73,8 +73,9 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-routerSql.post("/productos", upload.single("subida"), (req, res) => {   //orden de subida del archivo al "uploadDir"
-                                                                        //desde el campo file del formulario
+routerSql.post("/productos", upload.single("subida"), (req, res) => {
+  //orden de subida del archivo al "uploadDir"
+  //desde el campo file del formulario
   const fecha = new Date();
   const valor = [
     req.body.nombreProducto,
@@ -84,9 +85,9 @@ routerSql.post("/productos", upload.single("subida"), (req, res) => {   //orden 
     req.file.originalname,
     fecha,
   ];
-/*Secuencia de Query SQL. Sólo se ejecuta en caso de haber subido correctamente el archivo  anterior*/
-  
-sql =
+  /*Secuencia de Query SQL. Sólo se ejecuta en caso de haber subido correctamente el archivo  anterior*/
+
+  sql =
     "INSERT INTO productos (nombreProducto, descripcion, grupo, precio, imagen, fecha_creacion ) VALUES (?, ?, ?, ?, ?, ?)";
   db.query(sql, valor, (err, resultado) => {
     //Consulta SQL para presentación en Front End.
@@ -95,44 +96,39 @@ sql =
   });
 });
 
-
-
-
-
 routerSql.put("/modificar", (req, res) => {
   //Modificación de datos de producto
   const fecha = new Date();
-  const valor = [
-    req.body.nombreProducto,
-    req.body.descripcion,
-    req.body.grupo,
-    req.body.precio,
-    fecha,
-    req.query.id,
-  ];
-  
-  sql =
-    "UPDATE productos SET nombreProducto = ?, descripcion = ?, grupo = ?, precio = ?, fecha_creacion = ? WHERE id = ?";
-  
+  const valor = Object.values(req.body);
+  const atrib = Object.keys(req.body);
+  valor.push(fecha, req.query.id);
+
+  if (atrib == "") {
+    res.destroy("Sin datos para cambiar");
+  }
+  var sql = "UPDATE productos SET ";
+  atrib.forEach(miFuncion);
+
+  function miFuncion(value, index, array) {
+    sql += value + " = ?, ";
+  }
+
+  sql += "fecha_creacion = ?  WHERE id = ?";
 
   db.query(sql, valor, (err, resultado) => {
     //Consulta SQL para presentación en Front End.
     if (err) throw err;
-   // res.json(resultado);
+    //res.json(resultado);
   });
   res.send("todo ok");
 });
 
-
-routerSql.put("/eliminar", (req, res) => {
-  //Modificación de datos de producto
+routerSql.delete("/eliminar", (req, res) => {
+  //ELIMINACION DE REGISTROS
   const fecha = new Date();
-  const id=[req.query.id];
+  const id = [req.query.id];
 
-  
-  sql =
-    "DELETE FROM productos WHERE id = ?";
-  
+  sql = "DELETE FROM productos WHERE id = ?";
 
   db.query(sql, id, (err, resultado) => {
     //Consulta SQL para presentación en Front End.
@@ -140,8 +136,5 @@ routerSql.put("/eliminar", (req, res) => {
     res.json(resultado);
   });
 });
-
-
-
 
 module.exports = routerSql;
