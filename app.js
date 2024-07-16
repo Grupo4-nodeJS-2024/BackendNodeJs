@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const bases = require('./rutas/consultassql');
+const authRoutes = require ('./rutas/authRoutes');
 var cors = require('cors');
 
 const app = express();
@@ -12,6 +13,7 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, '/www')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use('/auth', authRoutes);
 app.use('/rutas', bases);
 
 // Route to serve the index.html
