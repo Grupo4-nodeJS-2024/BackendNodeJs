@@ -1,4 +1,6 @@
+require('dotenv').config();
+
 module.exports = {
-    secretKey:'tu_clave_secreta',
+    secretKey: process.env.SECRET_PHR,
     tokenExpiresIn: '1h'
 };

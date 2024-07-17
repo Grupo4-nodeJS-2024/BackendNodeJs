@@ -7,7 +7,7 @@ const db = require("../databases/db");
 exports.register = (req, res) => {
   const { username, lastname, del_address, tel, rol, password } = req.body;
 
-  const hash = crypt.Hash("sha256", 8);
+  const hash = crypt.Hash("sha256");
   hash.update(password);
   const hashedPassword = hash.digest("hex");
   
@@ -45,8 +45,7 @@ exports.login = (req, res)=>{
     const user = users.find(u => u.username === username);
     if (!user) return res.status(404).send ('User not found');
     
-    const hash = crypt.Hash("sha256", 8);
-    hash.update(password);
+    const hash = crypt.Hash("sha256");
     const verHash = hash.digest("hex");
     const passwordIsValid = verHash === user.password;
     if(!passwordIsValid) return res.status(401).send({auth: false, token: null});
